@@ -3,7 +3,7 @@ import SignUpForm from '../../components/signup/sign-up-form.component'
 import SignInForm from '../../components/signin/sign-in-form.component'
 import './authentication.styles.scss'
 
-const SingIn = () => {
+const Authentication = () => {
     return (
         <div className='authentication-container'>
             <SignInForm />
@@ -12,4 +12,4 @@ const SingIn = () => {
     )
 }
 
-export default SingIn
+export default Authentication
