@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBqpJeu7OIpgeyLdJzU0N51z7Vq19R0HMo",
@@ -61,3 +61,30 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+export const addDataToFirestore = async (collectionName, data) => {
+    const batch = writeBatch(db);
+
+    data.forEach(object => {
+        const docRef = doc(db, collectionName, object.title.toLowerCase());
+        batch.set(docRef, object);
+    });
+
+    await batch.commit();
+    console.log('Data added to firestore');
+}
+
+export const getDataFromFirestore = async () => {
+    const collectionRef = collection(db, 'categories');
+    const q = await query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+
+    const categoryMap = querySnapshot.docs.reduce((acc, doc) => {
+        const { title, items } = doc.data();
+        acc[title.toLowerCase()] = items;
+        return acc
+    }, {});
+
+    return categoryMap;
+}
