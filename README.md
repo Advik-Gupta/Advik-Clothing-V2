@@ -1,5 +1,7 @@
 # Advik Clothing
 
+(This project is still in progress)
+
 A complete react E-commerce website for a clothing store, stripe payments integrated!!!
 
 Deployed Site - https://advik-clothing-v2.netlify.app/
