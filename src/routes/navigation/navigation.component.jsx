@@ -19,6 +19,9 @@ const Navigation = () => {
                     <Logo className='logo' />
                 </LogoContainer>
                 <NavLinks>
+                    <NavLink to='/'>
+                        HOME
+                    </NavLink>
                     <NavLink to='/shop'>
                         SHOP
                     </NavLink>
