@@ -5,7 +5,6 @@ import { rootReducer } from "./root-reducer";
 const middlewares = [logger];
 
 export const store = configureStore({
-    reducer: rootReducer,
-    middleware: middlewares,
-})
-
+  reducer: rootReducer,
+  middleware: middlewares,
+});
