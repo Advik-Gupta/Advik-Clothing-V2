@@ -20,7 +20,6 @@ const App = () => {
             createUserDocumentFromAuth(user);
         }
         dispatch(setCurrentUser(user));
-        navigate("/");
     })
 
     return unsubscribe
